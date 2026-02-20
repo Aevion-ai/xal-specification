@@ -1,0 +1,259 @@
+{
+  "bundle_id": "XAL-20260219-001",
+  "export_timestamp": "2026-02-19T21:26:11.243055Z",
+  "jurisdiction": "US-Federal",
+  "claim_id": "CLM-2026-001",
+  "merkle_root": "418107a35f3e367676f8fdbf9478d995a9727eebbe480ffdd323757d740bbd11",
+  "execution_count": 23,
+  "effects_used": [
+    "!RemoteInference",
+    "!TPMQuote",
+    "!session_open",
+    "!ConstitutionalHalt{on_variance=0.15}",
+    "!start",
+    "!input",
+    "!end",
+    "!vote",
+    "!output",
+    "!HardwareAttest{once}",
+    "!Regulatory",
+    "!Consensus{N,M}",
+    "!AuditLog",
+    "!MerkleCommit"
+  ],
+  "signer_public_key": "a7afc1b033873e1b5363e3f2acfc37341019571e439e006e2d5441a890c4168a",
+  "crypto_algorithm": "Ed25519",
+  "hardware_attestation": {
+    "silicon_id": "AEVION-TPM-2026-001",
+    "tpm_quote": "b547bffb65294e15c4db745e3b01d0ab06bf43bd088f12d52477b2f090fb9352",
+    "timestamp": "2026-02-19T21:26:11.231980",
+    "attestation_type": "TPM2.0"
+  },
+  "constitutional_halt": {
+    "votes": [
+      0.92,
+      0.88,
+      0.95
+    ],
+    "variance": 0.06999999999999995,
+    "threshold": 0.15,
+    "halted": false
+  },
+  "verification": {
+    "method": "Ed25519",
+    "verified_receipts": 23,
+    "total_receipts": 23,
+    "verified": true
+  },
+  "items": [
+    {
+      "step": 1,
+      "instruction": ".start CLM-2026-001",
+      "hash": "ecf1e0f0a8c7b182f855ed6d0757b55c",
+      "effects": [
+        "!start"
+      ],
+      "signature": "a1ca3f33e6638dac4eb7936652703a5ec1299314f01cb2c7df9d8b9184dae22a714b450757eb8156c664139ad0c8c0e754ac29667e331c6ccad48da5c72a3006"
+    },
+    {
+      "step": 2,
+      "instruction": ".effect tpm_quote(0xDEADBEEF) : !HardwareAttest{once} -> quote_001",
+      "hash": "66199e2b542b0c4556726ad6085a7a6a",
+      "effects": [
+        "!HardwareAttest{once}"
+      ],
+      "signature": "813a2f6ac7e7a8e7f75f9496d5a6e0a2370ff02e1b52eec63a69d201c41f63d22a63f3cf0fd96e68ede8f0616bdcf56fba25fc60447d04a8e3e1a03627d28a09"
+    },
+    {
+      "step": 3,
+      "instruction": ".tpm_quote aevion_node_001",
+      "hash": "3a71e1f6080760fe12f562e922aa9943",
+      "effects": [
+        "!HardwareAttest{once}",
+        "!TPMQuote"
+      ],
+      "signature": "4229593f029ee1b567fbf1e485f69bab297f9feead7534dd5b77b8eae1b19d333598f01784b6ee1c5ed35a6e4f4651e5ddeb658abb8b710351e4f6599deb0f0a"
+    },
+    {
+      "step": 4,
+      "instruction": ".input veteran_id \"V123456789\" : VeteranID",
+      "hash": "276908706e8257601277427cf4e842ff",
+      "effects": [
+        "!input"
+      ],
+      "signature": "603b23dfc9b4367a69684cabe71f639ac91e854a9bc1149c22e26e688d5337be5377b135e9e53cace54f2adc6eef4f56b8517040190a678ebce400b64c9c950c"
+    },
+    {
+      "step": 5,
+      "instruction": ".input claim_type \"PTSD\" : Condition",
+      "hash": "22fb9b0abfaf7417d95c4250286e1767",
+      "effects": [
+        "!input"
+      ],
+      "signature": "9a9d311bf15fd6a45a9ad17140ded7d8521371631064047f4140557820a2923c95a51eb99d49dbe6cab917b7afc9d44c8266c7e64e11d7c62409e29947ee6001"
+    },
+    {
+      "step": 6,
+      "instruction": ".input evidence_file \"medical_records.pdf\" : Evidence",
+      "hash": "183b612fce4ca5dd03e5619af8faa38e",
+      "effects": [
+        "!input"
+      ],
+      "signature": "f5d5233f15bbf6786115d3af28ad5cf64749fceddb56c477c86935dead567712ae626bf071c44569b03e6873e3b91d8e1cf51bf2306ddcee582a1dc948322601"
+    },
+    {
+      "step": 7,
+      "instruction": ".session VoteProtocol<3,3> [claude-sonnet, gpt-4o, nemotron-ultra]",
+      "hash": "b88a526df62798182e9d698a74685a14",
+      "effects": [
+        "!session_open"
+      ],
+      "signature": "56f79c3b4a8da70ffc3f5af00436b9d181ba784e69392cef7afbc5ca319a08f6c9786ee8deadbb3179b34a458043a981a600d0e4407c1d42d64d771c3349970b"
+    },
+    {
+      "step": 8,
+      "instruction": ".effect model_call(\"claude-sonnet\", prompt) : !RemoteInference -> resp1",
+      "hash": "c9aef5495f6e475f02cd2e224a370373",
+      "effects": [
+        "!RemoteInference"
+      ],
+      "signature": "bc4af200addf521ee60f7e6e2bd64c5fb003e4068885314253eaf294e174dad3ab1b11f58fd648a01e67f71cf01a6f6cd16636a466e3de0fbb753d1196e25707"
+    },
+    {
+      "step": 9,
+      "instruction": ".vote claude-sonnet approve(0.92)",
+      "hash": "f7d8717247b637bc121919cc628f9b57",
+      "effects": [
+        "!vote"
+      ],
+      "signature": "8bbec5fb78b2bdf5d7d9d00706bdbcad2d3a06ccb090f7de48cab13468fac8bd325260daa6085a7048c781cfabe36dd1e49eb79c8c091735a2cf3f9b3edfe806"
+    },
+    {
+      "step": 10,
+      "instruction": ".effect model_call(\"gpt-4o\", prompt) : !RemoteInference -> resp2",
+      "hash": "e9e6fcacc213317b0c34c87589baffaf",
+      "effects": [
+        "!RemoteInference"
+      ],
+      "signature": "c00b760ef49d0bad2405ed3640b64e31bfc04bfcff7a8f28815b3b6b15de80cd4c08de62e799faae124ddca0d9b6489d2e444175837b9bdb1c9885a64a212906"
+    },
+    {
+      "step": 11,
+      "instruction": ".vote gpt-4o approve(0.88)",
+      "hash": "44f64b0221cbdbc818d0c9044bd8ff17",
+      "effects": [
+        "!vote"
+      ],
+      "signature": "5e710143632431b94bb9736bf0771324846ebba079dacf05471adc03ffea2e54b4f929d506b0152cd69bc8c1b5f388644e01596826e0e5d2373f44699570e40b"
+    },
+    {
+      "step": 12,
+      "instruction": ".effect model_call(\"nemotron-ultra\", prompt) : !RemoteInference -> resp3",
+      "hash": "fc50b391eb0f0d94c8478336991f6c4c",
+      "effects": [
+        "!RemoteInference"
+      ],
+      "signature": "843d17b5ba326550d61e6434410afc6f89579662694b6e3bb01315f5eb417e32f6cedac68b3ad4cabae92f36a179f8ae0d50f732a2eebb9076fee3d7c48f440c"
+    },
+    {
+      "step": 13,
+      "instruction": ".vote nemotron-ultra approve(0.95)",
+      "hash": "83170d19d5578cbec833440dc33dee36",
+      "effects": [
+        "!vote"
+      ],
+      "signature": "b08d8f7312c188cd30b7ca683a56f8aa9a4b76358b222e787d540242332de7ceaf0f89e0a3a7385652cc99404b212de0d216bcee4ac8fd41225d21839dac9e05"
+    },
+    {
+      "step": 14,
+      "instruction": ".close agreement(3/3) : Agreement",
+      "hash": "1ac3f5e0251af701c8b1747e193f534b",
+      "effects": [
+        "!Consensus{N,M}"
+      ],
+      "signature": "42e485b4c18fc885427397e05b0b9075ccfaec69ce1aa8a3bdba0b89ef0848cecfaf24ca03a91dfc4481e3ce9e176c13e77d02e5d919d0630003c58c5ab54306"
+    },
+    {
+      "step": 15,
+      "instruction": ".check M21-1-R001 (citation_present resp1) : pass",
+      "hash": "01802be3d8a511e9e4f8bff35c19bc98",
+      "effects": [
+        "!Regulatory"
+      ],
+      "signature": "00653b612cf079787edd044dbf574bd142c0bfd870b2c1fe852846ebeaa87f9d0367ed5ef1803d7b8c5aab10db11b3739939026f1a5d5c21177d95efe320f80e"
+    },
+    {
+      "step": 16,
+      "instruction": ".check M21-1-R002 (evidence_attached evidence) : pass",
+      "hash": "f390282437e08f3e8aa6c8a05174a652",
+      "effects": [
+        "!Regulatory"
+      ],
+      "signature": "0ce7e911bb032225423a5d5af13da01157a77345cbe7f8096de6a25e15fd48a5ff505cd6a25963c891501dc0049288bb166e9de4b1fb8c146c5fb5c2dea60d08"
+    },
+    {
+      "step": 17,
+      "instruction": ".check M21-1-R003 (no_disagreement) : pass",
+      "hash": "49c29f4dc88746c46cc20fd771adeacf",
+      "effects": [
+        "!Regulatory"
+      ],
+      "signature": "df7194d45bbcaf1de985fba31a76665e3cb8fef917fbc67923cf2f4a4c4e8a93be2c2e7e1d2415f701aa93bbff35f798b14853b85b253361103ddd8d5142cb06"
+    },
+    {
+      "step": 18,
+      "instruction": ".halt_if disagreement > 0.15",
+      "hash": "c13369d5dbbfa8fdf7ae4f710de1f84e",
+      "effects": [
+        "!ConstitutionalHalt{on_variance=0.15}"
+      ],
+      "signature": "21c44603e33e16fab70450a942cd49231d6dab1c854884fd7c6e1143050b753177dba515654932931b668237275ff016ef803a8913b846a918cc2ca772dc4c04"
+    },
+    {
+      "step": 19,
+      "instruction": ".output decision approve : Decision",
+      "hash": "a8ce36463cbc99d2c45f99bd76e223b4",
+      "effects": [
+        "!output"
+      ],
+      "signature": "fd92aafdbf2d878a05682456ec175f5347868dfe4210d89bb2c5cf22e4356fd6fe48accd626a598948a756e26b10149e5244a8ea4d333734b29c5e9a559ab706"
+    },
+    {
+      "step": 20,
+      "instruction": ".output confidence 0.92 : Confidence",
+      "hash": "200d41334ca0d26ccc95bd1217db1d45",
+      "effects": [
+        "!output"
+      ],
+      "signature": "f4fc446c6c0ca8a438089a7a5b8ad48f756fe9078c4ed0e51137a9d1948dd39b53a7f94824ab56956a6f6350ce03320350f8924c0af47a87cd89b423a6d15503"
+    },
+    {
+      "step": 21,
+      "instruction": ".output rating 70 : Rating",
+      "hash": "8a11a45569d79cb82fa60ff53a48f02a",
+      "effects": [
+        "!output"
+      ],
+      "signature": "c304679114e8534c00b08a821dc6f3faf3401787a83af48744da710b5b7dca52109f0776d0724c4042a68e4821eb6deb7682aba68fd45243e150cec15c6ccc06"
+    },
+    {
+      "step": 22,
+      "instruction": ".receipt ",
+      "hash": "d7286d2d16b4a68a677ba2c30bfe863b",
+      "effects": [
+        "!MerkleCommit",
+        "!AuditLog"
+      ],
+      "signature": "cf4b086243a8c1bf9816b9a6ec8d64e1dabf372b78767b87d58285734defd372cda101665c52720804901fd39408b8105474865090d2efedc3ec7d0087297d0d"
+    },
+    {
+      "step": 23,
+      "instruction": ".end approve VP-CLM-2026-001-a7b3c9d2",
+      "hash": "268c11f78d32feccbe70b37019812d74",
+      "effects": [
+        "!end"
+      ],
+      "signature": "18bd3bdf722902df747da57be0588f38f3193250b0dd38b5955e46e39a1d57c567089c2809a34710dd6cee073c52ee8da8957c832d1cbfb20ce9587f0764490f"
+    }
+  ]
+}
