@@ -10,6 +10,12 @@ XAL is published under **CC-BY-4.0** to maximize adoption across:
 - Financial services
 - Election infrastructure
 
+## Patent Portfolio
+
+| Patent | Application | Status |
+|--------|-------------|--------|
+| US 63/896,282 | Filed Oct 9, 2025 | **Issued** - Lead patent on tri-modal AI architecture |
+
 ## Patent Approach
 
 Aevion LLC has filed patents covering **implementation techniques**, not the data format itself:
