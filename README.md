@@ -2,7 +2,11 @@
 
 **Cryptographically verifiable AI execution format with per-instruction Ed25519 signatures, TPM 2.0 hardware attestation, and constitutional halts.**
 
-## What is XAL?
+## Background
+
+XAL was developed as part of Aevion LLC's verifiable AI infrastructure, protected by **US Patent 63/896,282** ("System and Method for Proof-Native Compliance Automation"), filed Oct 9, 2025.
+
+Published as an open standard under **CC-BY-4.0** to maximize adoption across government and industry.
 
 XAL is a low-level execution language for AI systems that produces **court-admissible proof bundles**. Each AI decision generates a tamper-evident audit trail that can be verified without re-executing the AI.
 
