@@ -1,24 +1,57 @@
 # XAL - eXplainable Assembly Language
 
-**Cryptographically verifiable AI execution format with per-instruction Ed25519 signatures, TPM 2.0 hardware attestation, and constitutional halts.**
-
-## Background
-
-XAL was developed as part of Aevion LLC's verifiable AI infrastructure, protected by **US Patent 63/896,282** ("System and Method for Proof-Native Compliance Automation"), filed Oct 9, 2025.
-
-Published as an open standard under **CC-BY-4.0** to maximize adoption across government and industry.
+**Implementation of US Patent 63/896,282: "System and Method for Proof-Native Compliance Automation"**
 
 XAL is a low-level execution language for AI systems that produces **court-admissible proof bundles**. Each AI decision generates a tamper-evident audit trail that can be verified without re-executing the AI.
 
+## Patent Alignment
+
+This specification implements the core claims of **US Patent 63/896,282** (filed Oct 9, 2025):
+
+| Patent Layer | XAL Implementation |
+|--------------|-------------------|
+| **Layer 1: Self-Verification** | Effect types track AI capabilities (`!RemoteInference`, `!Regulatory`) |
+| **Layer 2: Cryptographic Signing** | Per-instruction Ed25519 signatures + TPM 2.0 attestation |
+| **Layer 3: Temporal Chain** | Merkle tree commitment of execution history |
+| **Layer 4: Blockchain Anchoring** | Merkle root ready for on-chain anchoring |
+
 ## Core Features
 
-| Feature | Description |
-|---------|-------------|
-| **Per-Instruction Signatures** | Every instruction signed with Ed25519 |
-| **Hardware Attestation** | TPM 2.0 quote binding execution to silicon root of trust |
-| **Merkle Tree Commit** | Cryptographic commitment to execution history |
-| **Constitutional Halt** | Automatic halt when model disagreement exceeds threshold |
-| **Effect Types** | Compile-time tracking of AI capabilities used |
+| Feature | Description | Patent Claim |
+|---------|-------------|--------------|
+| **Per-Instruction Signatures** | Every instruction signed with Ed25519 | Layer 2 |
+| **Hardware Attestation** | TPM 2.0 quote binding to silicon root of trust | Layer 2 |
+| **Merkle Tree Commit** | Cryptographic commitment to execution history | Layer 3 |
+| **Constitutional Halt** | Automatic halt when model disagreement exceeds threshold | Layer 1 |
+| **Effect Types** | Compile-time tracking of AI capabilities used | Layer 1 |
+| **Multi-Model Consensus** | N-of-M voting with variance-based halt | Layer 1 |
+
+## Architecture
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                    XAL Execution Model                      │
+├─────────────────────────────────────────────────────────────┤
+│  Layer 1: Self-Verification                                 │
+│  ├── Effect type checking (!RemoteInference, !Regulatory)  │
+│  ├── Constitutional halt (.halt_if variance > threshold)   │
+│  └── Regulatory compliance (.check M21-1-R001)             │
+├─────────────────────────────────────────────────────────────┤
+│  Layer 2: Cryptographic Signing                             │
+│  ├── Per-instruction Ed25519 signatures                    │
+│  ├── TPM 2.0 hardware attestation                          │
+│  └── Public key ledger for verification                   │
+├─────────────────────────────────────────────────────────────┤
+│  Layer 3: Temporal Verification                             │
+│  ├── Merkle tree of all instructions                       │
+│  ├── Hash chain with parent references                     │
+│  └── Execution receipt bundle                              │
+├─────────────────────────────────────────────────────────────┤
+│  Layer 4: Blockchain Anchoring                              │
+│  ├── Merkle root for on-chain anchoring                   │
+│  └── Batch verification support                            │
+└─────────────────────────────────────────────────────────────┘
+```
 
 ## Quick Example: VA Claims Processing
 
@@ -34,6 +67,17 @@ XAL is a low-level execution language for AI systems that produces **court-admis
     "!Consensus{N,M}",
     "!Regulatory"
   ],
+  "hardware_attestation": {
+    "silicon_id": "AEVION-TPM-2026-001",
+    "tpm_quote": "b547bffb65294e15c4db745e3b01d0ab06bf43bd...",
+    "attestation_type": "TPM2.0"
+  },
+  "constitutional_halt": {
+    "votes": [0.92, 0.88, 0.95],
+    "variance": 0.07,
+    "threshold": 0.15,
+    "halted": false
+  },
   "verification": {
     "method": "Ed25519",
     "verified_receipts": 23,
@@ -42,23 +86,13 @@ XAL is a low-level execution language for AI systems that produces **court-admis
 }
 ```
 
-## Verification
-
-```python
-from xal_verify import verify_bundle
-
-result = verify_bundle(bundle)
-print(f"Valid: {result.bundle_valid}")
-print(f"Signatures: {result.signatures_valid}")
-print(f"Merkle: {result.merkle_valid}")
-```
-
 ## Use Cases
 
 - **Veterans Affairs**: M21-1 adjudication with immutable audit trails
 - **Elections**: VVSG 2.0 software-independent verification
 - **Healthcare**: DSCSA pharmaceutical transaction history
 - **Financial Services**: Model governance and regulatory compliance
+- **Defense**: AI decision auditability for DoD acquisitions
 
 ## Specification
 
@@ -72,6 +106,10 @@ See [PATENTS.md](PATENTS.md) for patent licensing terms.
 
 ## Resources
 
-- [Proof Bundle Example](examples/grant_proposal_bundle.json)
+- [Proof Bundle Example](grant_proposal_bundle.json)
 - [XAL Interpreter](aevion/xal/interpreter.py)
 - [Verification Tools](aevion/xal/xal_verify.py)
+
+## Patent References
+
+- US 63/896,282 - System and Method for Proof-Native Compliance Automation (Filed Oct 9, 2025)
